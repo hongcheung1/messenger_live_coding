@@ -181,7 +181,11 @@ const Home = ({ user, logout }) => {
   useEffect(() => {
     const fetchConversations = async () => {
       try {
-        const { data } = await axios.get("/api/conversations");
+        let { data } = await axios.get("/api/conversations");
+        // make conversations in right order
+        data.map(({messages}) => {
+          messages: messages.reverse()
+        });
         setConversations(data);
       } catch (error) {
         console.error(error);
