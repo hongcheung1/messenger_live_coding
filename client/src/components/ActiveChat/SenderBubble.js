@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography, ImageListItem } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -27,15 +27,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const SenderBubble = ({ time, text }) => {
+const SenderBubble = ({ time, text, attachments }) => {
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
-      <Box className={classes.bubble}>
+      {text ? <Box className={classes.bubble}>
         <Typography className={classes.text}>{text}</Typography>
-      </Box>
+      </Box> : null}
+      {attachments ? <Box display="flex" flex="1" className="attachments-file">
+        {attachments.map(item =>
+          <img
+            src={`${item}`}
+            loading="lazy"
+          />)}
+      </Box> : null}
     </Box>
   );
 };
