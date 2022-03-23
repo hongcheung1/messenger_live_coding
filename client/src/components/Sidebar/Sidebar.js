@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
 
 const Sidebar = ({
   handleChange,
+  handleLogout,
   searchTerm,
   conversations = [],
   user,
@@ -29,7 +30,7 @@ const Sidebar = ({
 
   return (
     <Box className={classes.root}>
-      <CurrentUser user={user} />
+      <CurrentUser user={user} handleLogout={handleLogout} />
       <Typography className={classes.title}>Chats</Typography>
       <Search handleChange={handleChange} />
       {conversations

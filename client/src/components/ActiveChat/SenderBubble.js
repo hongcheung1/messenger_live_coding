@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography, ImageListItem } from '@material-ui/core';
+import { Box, Typography, ImageList, ImageListItem } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -22,6 +22,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
   },
   bubble: {
+    maxWidth: '500px',
     background: '#F4F6FA',
     borderRadius: '10px 10px 0 10px',
   },
@@ -30,18 +31,22 @@ const useStyles = makeStyles(() => ({
 const SenderBubble = ({ time, text, attachments }) => {
   const classes = useStyles();
 
+  const openViewImage = () => {
+
+  };
+
   return (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
+      {attachments ? <Box className={`attachments-files ${classes.bubble}`}>
+        {attachments.map(item =>
+          <div key={item} className="item-files" onClick={openViewImage} role="presentation">
+            <img src={`${item}`} loading="lazy" />
+          </div>
+        )}
+      </Box> : null}
       {text ? <Box className={classes.bubble}>
         <Typography className={classes.text}>{text}</Typography>
-      </Box> : null}
-      {attachments ? <Box display="flex" flex="1" className="attachments-file">
-        {attachments.map(item =>
-          <img
-            src={`${item}`}
-            loading="lazy"
-          />)}
       </Box> : null}
     </Box>
   );

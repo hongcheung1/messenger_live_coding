@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, IconButton, Menu, MenuItem } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { BadgeAvatar } from "./index";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
@@ -31,15 +31,35 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const CurrentUser = ({ user }) => {
+const CurrentUser = ({ user, handleLogout }) => {
   const classes = useStyles();
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   return (
     <Box className={classes.root}>
       <BadgeAvatar photoUrl={user?.photoUrl} online={true} />
       <Box className={classes.subContainer}>
         <Typography className={classes.username}>{user?.username}</Typography>
-        <MoreHorizIcon classes={{ root: classes.ellipsis }} />
+        <MoreHorizIcon onClick={handleClick} classes={{ root: classes.ellipsis }} />
+        <Menu
+          id="basic-menu"
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          MenuListProps={{
+            'aria-labelledby': 'basic-button',
+          }}
+        >
+          <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        </Menu>
       </Box>
     </Box>
   );
