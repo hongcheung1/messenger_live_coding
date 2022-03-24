@@ -8,6 +8,8 @@ const useStyles = makeStyles(() => ({
     paddingLeft: 21,
     paddingRight: 21,
     flexGrow: 1,
+    maxWidth: '342px',
+    width: '100%',
   },
   title: {
     fontSize: 20,
