@@ -7,10 +7,18 @@ import {
   TextField,
   FormHelperText,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import AuthWrapper from './components/AuthWrapper/AuthWrapper'
+
+const useStyles = makeStyles({
+  containerStyle: {
+    marginTop: '12px'
+  }
+});
 
 const Signup = ({ user, register }) => {
   const history = useHistory();
+  const classes = useStyles();
 
   const [formErrorMessage, setFormErrorMessage] = useState({});
 
@@ -38,9 +46,8 @@ const Signup = ({ user, register }) => {
   return (
     <AuthWrapper>
         <form onSubmit={handleRegister}>
-          <label className="banner">Create an account.</label>
-          <Grid item md={12}>
-            <Grid>
+          <label className="banner">Create an account.</label><br/>
+          <Grid className={classes.containerStyle}>
               <FormControl>
                 <TextField
                   aria-label="username"
@@ -50,8 +57,6 @@ const Signup = ({ user, register }) => {
                   required
                 />
               </FormControl>
-            </Grid>
-            <Grid>
               <FormControl>
                 <TextField
                   label="E-mail address"
@@ -61,8 +66,6 @@ const Signup = ({ user, register }) => {
                   required
                 />
               </FormControl>
-            </Grid>
-            <Grid>
               <FormControl error={!!formErrorMessage.confirmPassword}>
                 <TextField
                   aria-label="password"
@@ -76,8 +79,6 @@ const Signup = ({ user, register }) => {
                   {formErrorMessage.confirmPassword}
                 </FormHelperText>
               </FormControl>
-            </Grid>
-            <Grid>
               <FormControl error={!!formErrorMessage.confirmPassword}>
                 <TextField
                   label="Confirm Password"
@@ -91,7 +92,6 @@ const Signup = ({ user, register }) => {
                   {formErrorMessage.confirmPassword}
                 </FormHelperText>
               </FormControl>
-            </Grid>
             <Grid className="mg-t-1" container>
               <Button className="btn-submit" type="submit" variant="contained" size="large">
                 Create

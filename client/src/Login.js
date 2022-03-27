@@ -6,10 +6,18 @@ import {
   FormControl,
   TextField,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import AuthWrapper from './components/AuthWrapper/AuthWrapper'
+
+const useStyles = makeStyles({
+  containerStyle: {
+    marginTop: '12px'
+  }
+});
 
 const Login = ({ user, login }) => {
   const history = useHistory();
+  const classes = useStyles();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -29,7 +37,7 @@ const Login = ({ user, login }) => {
     <AuthWrapper>
         <form onSubmit={handleLogin}>
           <label className="banner">Welcome back!</label>
-          <Grid>
+          <Grid className={classes.containerStyle}>
             <FormControl margin="normal" required>
               <TextField
                 aria-label="email"
@@ -47,7 +55,7 @@ const Login = ({ user, login }) => {
               />
               <a className="forgot-password" href="#">Forgot?</a>
             </FormControl>
-            <Grid container>
+            <Grid className="mg-t-1" container>
               <Button className="btn-submit" type="submit" variant="contained" size="large">
                 Login
               </Button>

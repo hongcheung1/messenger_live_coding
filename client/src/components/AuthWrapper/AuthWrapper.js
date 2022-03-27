@@ -1,20 +1,28 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import {
-    Container,
-    Grid,
+import { useLocation, useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { 
     Typography,
-    Button,
-  } from '@material-ui/core';
-import './AuthWrapper.scss';
+    Grid,
+    Container,
+    Button
+} from '@material-ui/core';
 
-export const styles = {
-    paperContainer: {
+const banner = 'Converse with anyone with any language';
+const useStyles = makeStyles({
+    root: {
+        height: '100vh',
+        display: 'flex',
+        flex: 1,
+        justifyContent: 'space-around'
+    },
+    bannerContainer: {
       backgroundImage: `url(${'bg-img.png'}), linear-gradient(180deg, #3A8DFF 0%, #86B9FF 100%)`,
       backgroundRepeat: 'no-repeat',
       backgroundBlendMode: 'overlay',
       backgroundSize: 'cover',
       opacity: 0.85,
+      display: 'flex',
       position: 'relative',
       justifyContent: 'center'
     },
@@ -22,15 +30,45 @@ export const styles = {
       display: 'flex',
       flex: '1',
       justifyContent: 'center',
-      height: 'calc(100% - 1em - 24px)'
-    }
-  };
-  
+      height: 'calc(100% - 1em - 24px)',
+      alignItems: 'center'
+    },
+    bannerStyle: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    bannerText: {
+        color: 'white',
+        fontSize: '26px',
+        fontWeight: 400,
+        textAlign: 'center',
+    },
+    bubbleStyle: {
+        position: 'absolute',
+        transform: 'translate(calc(50% - 33px))',
+        top: '30%',
+        width: '66px',
+        height: '67px'
+    },
+    headerStyle: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        alignItems: 'center'
+    },
+    titleStyle: {
+        fontSize: '14px',
+        color: '#B0B0B0',
+    },
+});
+
 const AuthWrapper = ({children}) => {
     const { pathname } = useLocation();
     const [title, setTitle] = useState('');
     const [targetPath, setTargetPath] = useState('');
     const [buttonText, setButtonText] = useState('');
+    const classes = useStyles();
+    const history = useHistory();
 
     useEffect(() => {
         if(pathname === '/register') {
@@ -45,21 +83,20 @@ const AuthWrapper = ({children}) => {
     }, [pathname]);
 
     return (
-        <Grid container className="auth-container">
-            <Grid className="left-column width-100pc" item md={5} style={styles.paperContainer}>
-            <div className="bubble-icon">
-                <img src="bubble.svg" />
-                <Typography>Converse with anyone with any language</Typography>
-            </div>
+        <Grid container className={classes.root}>
+            <Grid item md={5} className={classes.bannerContainer}>
+                <Grid md={9} className={classes.bannerStyle}>
+                    <img className={classes.bubbleStyle} src="bubble.svg" />
+                    <Typography className={classes.bannerText}>{banner}</Typography>
+                </Grid>
             </Grid>
             <Grid className="right-column" item md={7}>
-                <Container className="header-action">
-                    <Typography>{title}</Typography>
-                    <Link className="link" to={targetPath}>
-                    <Button variant="contained">{buttonText}</Button>
-                    </Link>
+                <Container className={classes.headerStyle}>
+                    <Typography className={classes.titleStyle}>{title}</Typography>
+                    <Button onClick={() => history.push(targetPath)}
+                    >{buttonText}</Button>
                 </Container>
-                <Container style={styles.formContainer}>
+                <Container className={classes.formContainer}>
                     {children}
                 </Container>
             </Grid>
