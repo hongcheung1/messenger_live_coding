@@ -9,7 +9,6 @@ import {
 import AuthWrapper from './components/AuthWrapper/AuthWrapper'
 
 const Login = ({ user, login }) => {
-  const classes = useStyles();
   const history = useHistory();
 
   const handleLogin = async (event) => {

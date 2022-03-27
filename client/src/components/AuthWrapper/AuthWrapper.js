@@ -39,33 +39,31 @@ const AuthWrapper = ({children}) => {
             setTargetPath('/login');
         } else if(pathname === '/login') {
             setTitle('Don\'t have an account?');
-            setButtonText('Register');
+            setButtonText('Create account');
             setTargetPath('/register')
         } else return;
     }, [pathname]);
 
     return (
-        <Container className="auth-container">
-            <Grid container>
-                <Grid className="left-column width-100pc" item md={5} style={styles.paperContainer}>
-                <div className="bubble-icon">
-                    <img src="bubble.svg" height={66} width={67} />
-                    <Typography>Converse with anyone with any language</Typography>
-                </div>
-                </Grid>
-                <Grid className="right-column" item md={7}>
-                    <Container display="flex" flex="1">
-                        <Typography>{title}</Typography>
-                        <Link className="link" to={targetPath}>
-                        <Button variant="contained">{buttonText}</Button>
-                        </Link>
-                    </Container>
-                    <Container style={styles.formContainer}>
-                        {children}
-                    </Container>
-                </Grid>
+        <Grid container className="auth-container">
+            <Grid className="left-column width-100pc" item md={5} style={styles.paperContainer}>
+            <div className="bubble-icon">
+                <img src="bubble.svg" />
+                <Typography>Converse with anyone with any language</Typography>
+            </div>
             </Grid>
-        </Container>
+            <Grid className="right-column" item md={7}>
+                <Container className="header-action">
+                    <Typography>{title}</Typography>
+                    <Link className="link" to={targetPath}>
+                    <Button variant="contained">{buttonText}</Button>
+                    </Link>
+                </Container>
+                <Container style={styles.formContainer}>
+                    {children}
+                </Container>
+            </Grid>
+        </Grid>
   );
 }
 

@@ -10,7 +10,6 @@ import {
 import AuthWrapper from './components/AuthWrapper/AuthWrapper'
 
 const Signup = ({ user, register }) => {
-  const classes = useStyles();
   const history = useHistory();
 
   const [formErrorMessage, setFormErrorMessage] = useState({});
@@ -33,6 +32,7 @@ const Signup = ({ user, register }) => {
 
   useEffect(() => {
     if (user && user.id) history.push('/home');
+    else history.push('/register');
   }, [user, history]);
 
   return (
