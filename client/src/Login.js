@@ -11,16 +11,6 @@ import AuthWrapper from './components/AuthWrapper/AuthWrapper'
 import Form from './components/Form'
 
 const useStyles = makeStyles(() => ({
-  submitButton: {
-    width: '160px',
-    height: '56px',
-    backgroundColor: '#3a8dff',
-    color: '#fff',
-    margin: 'auto',
-    fontSize: '16px',
-    fontWeight: 700,
-    borderRadius: '3px'
-  },
   forgotPwdStyle: {
     position: 'absolute',
     right: '12px',
@@ -58,7 +48,7 @@ const Login = ({ user, login }) => {
 
   return (
     <AuthWrapper>
-      <Form handleSubmit={handleLogin} header={'Welcome back!'}>
+      <Form handleSubmit={handleLogin} header={'Welcome back!'} buttonText={'Login'}>
         <FormControl className={classes.formStyle} margin="normal" required>
           <TextField
             className={classes.textField}
@@ -77,11 +67,6 @@ const Login = ({ user, login }) => {
           />
           <Link to='#' className={classes.forgotPwdStyle}>Forgot?</Link>
         </FormControl>
-        <Grid container>
-          <Button className={classes.submitButton} type="submit" variant="contained" size="large">
-            Login
-          </Button>
-        </Grid>
       </Form>
     </AuthWrapper>
   );

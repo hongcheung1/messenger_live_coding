@@ -68,7 +68,7 @@ const Signup = ({ user, register }) => {
 
   return (
     <AuthWrapper>
-      <Form handleSubmit={handleRegister} header={'Create an account.'}>
+      <Form handleSubmit={handleRegister} header={'Create an account.'} buttonText={'Create'}>
         <FormControl className={classes.formStyle}>
           <TextField
             aria-label="username"
@@ -113,11 +113,6 @@ const Signup = ({ user, register }) => {
             {formErrorMessage.confirmPassword}
           </FormHelperText>
         </FormControl>
-        <Grid container>
-          <Button className={classes.submitButton} type="submit" variant="contained" size="large">
-            Create
-          </Button>
-        </Grid>
       </Form>
     </AuthWrapper>
   );
