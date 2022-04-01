@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import {
   Grid,
   Button,
@@ -8,12 +8,35 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import AuthWrapper from './components/AuthWrapper/AuthWrapper'
+import Form from './components/Form'
 
-const useStyles = makeStyles({
-  containerStyle: {
-    marginTop: '12px'
+const useStyles = makeStyles(() => ({
+  submitButton: {
+    width: '160px',
+    height: '56px',
+    backgroundColor: '#3a8dff',
+    color: '#fff',
+    margin: 'auto',
+    fontSize: '16px',
+    fontWeight: 700,
+    borderRadius: '3px'
+  },
+  forgotPwdStyle: {
+    position: 'absolute',
+    right: '12px',
+    top: '35%',
+    fontSize: '12px',
+    textDecoration: 'none',
+    color: '#3a8dff'
+  },
+  formStyle: {
+    width: '100%',
+    marginBottom: '1em'
+  },
+  textField: {
+    color: '#b0b0b0',
   }
-});
+}))
 
 const Login = ({ user, login }) => {
   const history = useHistory();
@@ -35,33 +58,31 @@ const Login = ({ user, login }) => {
 
   return (
     <AuthWrapper>
-        <form onSubmit={handleLogin}>
-          <label className="banner">Welcome back!</label>
-          <Grid className={classes.containerStyle}>
-            <FormControl margin="normal" required>
-              <TextField
-                aria-label="email"
-                label="E-mail address"
-                name="username"
-                type="text"
-              />
-            </FormControl>
-            <FormControl margin="normal" required>
-              <TextField
-                label="Password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-              <a className="forgot-password" href="#">Forgot?</a>
-            </FormControl>
-            <Grid className="mg-t-1" container>
-              <Button className="btn-submit" type="submit" variant="contained" size="large">
-                Login
-              </Button>
-            </Grid>
-          </Grid>
-        </form>
+      <Form handleSubmit={handleLogin} header={'Welcome back!'}>
+        <FormControl className={classes.formStyle} margin="normal" required>
+          <TextField
+            className={classes.textField}
+            aria-label="email"
+            label="E-mail address"
+            name="username"
+            type="text"
+          />
+        </FormControl>
+        <FormControl className={classes.formStyle} margin="normal" required>
+          <TextField
+            label="Password"
+            aria-label="password"
+            type="password"
+            name="password"
+          />
+          <Link to='#' className={classes.forgotPwdStyle}>Forgot?</Link>
+        </FormControl>
+        <Grid container>
+          <Button className={classes.submitButton} type="submit" variant="contained" size="large">
+            Login
+          </Button>
+        </Grid>
+      </Form>
     </AuthWrapper>
   );
 };

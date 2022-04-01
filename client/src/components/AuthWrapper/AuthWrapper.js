@@ -8,23 +8,39 @@ import {
     Button
 } from '@material-ui/core';
 
-const banner = 'Converse with anyone with any language';
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         height: '100vh',
         display: 'flex',
         flex: 1,
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        [theme.breakpoints.down('sm')]: {
+            display: 'block',
+        }
     },
     bannerContainer: {
-      backgroundImage: `url(${'bg-img.png'}), linear-gradient(180deg, #3A8DFF 0%, #86B9FF 100%)`,
+      backgroundImage: `url(${'bg-img.png'})`,
       backgroundRepeat: 'no-repeat',
-      backgroundBlendMode: 'overlay',
-      backgroundSize: 'cover',
       opacity: 0.85,
+      backgroundSize: 'cover',
       display: 'flex',
       position: 'relative',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      mixBlendMode: 'normal',
+      [theme.breakpoints.down('sm')]: {
+          maxHeight: '270px'
+      }
+    },
+    maskStyle: {
+        position: 'absolute',
+        width: '100%',
+        height: '100vh',
+        zIndex: '-1',
+        background: 'linear-gradient(180deg, #3A8DFF 0%, #86B9FF 100%)',
+        opacity: 0.85,
+    },
+    mainContainer: {
+        marginTop: '30px'
     },
     formContainer: {
       display: 'flex',
@@ -37,30 +53,57 @@ const useStyles = makeStyles({
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            position: 'relative',
+            width: '80%'
+        }
     },
     bannerText: {
         color: 'white',
         fontSize: '26px',
         fontWeight: 400,
         textAlign: 'center',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '1.2em',
+            marginTop: '110px'
+        },
+        [theme.breakpoints.up('sm')]: {
+            marginTop: '40px',
+        }
     },
     bubbleStyle: {
         position: 'absolute',
         transform: 'translate(calc(50% - 33px))',
         top: '30%',
         width: '66px',
-        height: '67px'
+        height: '67px',
+        [theme.breakpoints.down('sm')]: {
+            display: 'block',
+            margin: '0 auto'
+        }
     },
     headerStyle: {
         display: 'flex',
         justifyContent: 'flex-end',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     titleStyle: {
         fontSize: '14px',
         color: '#B0B0B0',
     },
-});
+    buttonStyle: {
+        width: '170px',
+        height: '56px',
+        margin: '0 30px',
+        backgroundColor: '#fff',
+        boxShadow: '0px 2px 12px rgba(74, 106, 149, 0.2)',
+        borderRadius: '5px',
+        fontWeight: 600,
+        fontSize: '14px',
+        lineHeight: '19px',
+        color: '#3A8DFF'
+    }
+}));
 
 const AuthWrapper = ({children}) => {
     const { pathname } = useLocation();
@@ -85,15 +128,16 @@ const AuthWrapper = ({children}) => {
     return (
         <Grid container className={classes.root}>
             <Grid item md={5} className={classes.bannerContainer}>
-                <Grid md={9} className={classes.bannerStyle}>
-                    <img className={classes.bubbleStyle} src="bubble.svg" />
-                    <Typography className={classes.bannerText}>{banner}</Typography>
+                <div className={classes.maskStyle}/>
+                <Grid item md={9} className={classes.bannerStyle}>
+                    <img className={classes.bubbleStyle} src="bubble.svg" alt='Banner Image' />
+                    <Typography className={classes.bannerText}>{'Converse with anyone with any language'}</Typography>
                 </Grid>
             </Grid>
-            <Grid className="right-column" item md={7}>
+            <Grid item md={7} className={classes.mainContainer}>
                 <Container className={classes.headerStyle}>
                     <Typography className={classes.titleStyle}>{title}</Typography>
-                    <Button onClick={() => history.push(targetPath)}
+                    <Button onClick={() => history.push(targetPath)} className={classes.buttonStyle}
                     >{buttonText}</Button>
                 </Container>
                 <Container className={classes.formContainer}>
