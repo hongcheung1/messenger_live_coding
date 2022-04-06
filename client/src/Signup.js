@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
 import {
-  Grid,
-  Button,
   FormControl,
   TextField,
   FormHelperText,
@@ -40,7 +37,6 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Signup = ({ user, register }) => {
-  const history = useHistory();
   const classes = useStyles();
 
   const [formErrorMessage, setFormErrorMessage] = useState({});
@@ -61,13 +57,8 @@ const Signup = ({ user, register }) => {
     await register({ username, email, password });
   };
 
-  useEffect(() => {
-    if (user && user.id) history.push('/home');
-    else history.push('/register');
-  }, [user, history]);
-
   return (
-    <AuthWrapper>
+    <AuthWrapper title='Already have an account?' buttonText='Login' targetPath='login'>
       <Form handleSubmit={handleRegister} header={'Create an account.'} buttonText={'Create'}>
         <FormControl className={classes.formStyle}>
           <TextField

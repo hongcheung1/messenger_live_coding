@@ -8,6 +8,8 @@ const useStyles = makeStyles(() => ({
     paddingLeft: 21,
     paddingRight: 21,
     flexGrow: 1,
+    maxWidth: '342px',
+    width: '100%',
   },
   title: {
     fontSize: 20,
@@ -20,6 +22,7 @@ const useStyles = makeStyles(() => ({
 
 const Sidebar = ({
   handleChange,
+  handleLogout,
   searchTerm,
   conversations = [],
   user,
@@ -29,7 +32,7 @@ const Sidebar = ({
 
   return (
     <Box className={classes.root}>
-      <CurrentUser user={user} />
+      <CurrentUser user={user} handleLogout={handleLogout} />
       <Typography className={classes.title}>Chats</Typography>
       <Search handleChange={handleChange} />
       {conversations

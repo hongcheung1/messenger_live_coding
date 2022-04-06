@@ -182,7 +182,6 @@ const Home = ({ user, logout }) => {
     const fetchConversations = async () => {
       try {
         let { data } = await axios.get("/api/conversations");
-        // make conversations in right order
         data.map(({messages}) => {
           messages: messages.reverse()
         });

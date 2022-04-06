@@ -22,20 +22,32 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
   },
   bubble: {
+    maxWidth: '500px',
     background: '#F4F6FA',
     borderRadius: '10px 10px 0 10px',
   },
 }));
 
-const SenderBubble = ({ time, text }) => {
+const SenderBubble = ({ time, text, attachments }) => {
   const classes = useStyles();
+
+  const openViewImage = () => {
+
+  };
 
   return (
     <Box className={classes.root}>
       <Typography className={classes.date}>{time}</Typography>
-      <Box className={classes.bubble}>
+      {attachments ? <Box className={`attachments-files ${classes.bubble}`}>
+        {attachments.map(item =>
+          <div key={item} className="item-files" onClick={openViewImage} role="presentation">
+            <img src={`${item}`} loading="lazy" alt='Attached Images' />
+          </div>
+        )}
+      </Box> : null}
+      {text ? <Box className={classes.bubble}>
         <Typography className={classes.text}>{text}</Typography>
-      </Box>
+      </Box> : null}
     </Box>
   );
 };

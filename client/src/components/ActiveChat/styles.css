@@ -1,0 +1,60 @@
+.ActiveChat-Container {
+  height: 100%;
+}
+.ActiveChat-Container .messages-comming {
+  max-height: 80%;
+  height: calc(100vh - 160px - 64px);
+  overflow: auto;
+}
+.ActiveChat-Container .messages-comming .bubbles {
+  margin-right: 40px;
+}
+.ActiveChat-Container .messages-comming .attachments-files {
+  max-width: 340px;
+  text-align: right;
+}
+.ActiveChat-Container .messages-comming .attachments-files .item-files {
+  display: inline-block;
+  margin-left: auto;
+  cursor: pointer;
+  max-width: 170px;
+  height: 150px;
+}
+.ActiveChat-Container .messages-comming .attachments-files .item-files:first-child {
+  margin-top: 0.5em;
+}
+.ActiveChat-Container .messages-comming .attachments-files .item-files img {
+  width: calc(100% - 1em);
+  height: 100%;
+  margin: 0 0.5em;
+}
+.ActiveChat-Container .push-message {
+  margin-right: 40px;
+  margin-bottom: 30px;
+  position: relative;
+}
+.ActiveChat-Container .push-message .MuiFormControl-root {
+  margin-bottom: 0;
+}
+.ActiveChat-Container .push-message .add-attached-files {
+  position: absolute;
+  top: -110%;
+}
+.ActiveChat-Container .push-message .add-attached-files .item-files {
+  display: inline-block;
+  margin-right: 1em;
+  cursor: pointer;
+  width: 80px;
+  height: 70px;
+  position: relative;
+}
+.ActiveChat-Container .push-message .add-attached-files .item-files .MuiSvgIcon-root {
+  position: absolute;
+  color: #444546;
+  right: -4px;
+  top: -22px;
+}
+.ActiveChat-Container .push-message .add-attached-files .item-files img {
+  width: 100%;
+  height: 100%;
+}
