@@ -1,5 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
-import axios from "axios";
+import React, { useRef, useState } from 'react';
 import { FormControl, FilledInput, IconButton, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { SentimentDissatisfied, AttachFile, HighlightOff } from '@material-ui/icons';
@@ -95,7 +94,7 @@ const Input = ({ otherUser, conversationId, user, postMessage, messagesComming }
           {attachments.map((img, i) => (
             <div className="item-files">
               <HighlightOff onClick={() => removeAttachedFile(i)} />
-              <img src={img.previewUrl} loading="lazy" />
+              <img src={img.previewUrl} loading="lazy" alt="Img Preview" />
             </div>))}
         </Box>
         <FilledInput

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography, ImageList, ImageListItem } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -41,7 +41,7 @@ const SenderBubble = ({ time, text, attachments }) => {
       {attachments ? <Box className={`attachments-files ${classes.bubble}`}>
         {attachments.map(item =>
           <div key={item} className="item-files" onClick={openViewImage} role="presentation">
-            <img src={`${item}`} loading="lazy" />
+            <img src={`${item}`} loading="lazy" alt='Attached Images' />
           </div>
         )}
       </Box> : null}

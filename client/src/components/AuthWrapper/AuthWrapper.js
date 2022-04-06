@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { 
     Typography,
@@ -105,32 +104,16 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const AuthWrapper = ({children}) => {
-    const { pathname } = useLocation();
-    const [title, setTitle] = useState('');
-    const [targetPath, setTargetPath] = useState('');
-    const [buttonText, setButtonText] = useState('');
+const AuthWrapper = ({children, title, buttonText, targetPath}) => {
     const classes = useStyles();
     const history = useHistory();
-
-    useEffect(() => {
-        if(pathname === '/register') {
-            setTitle('Already have an account?');
-            setButtonText('Login');
-            setTargetPath('/login');
-        } else if(pathname === '/login') {
-            setTitle('Don\'t have an account?');
-            setButtonText('Create account');
-            setTargetPath('/register')
-        } else return;
-    }, [pathname]);
 
     return (
         <Grid container className={classes.root}>
             <Grid item md={5} className={classes.bannerContainer}>
                 <div className={classes.maskStyle}/>
                 <Grid item md={9} className={classes.bannerStyle}>
-                    <img className={classes.bubbleStyle} src="bubble.svg" alt='Banner Image' />
+                    <img className={classes.bubbleStyle} src="bubble.svg" alt='Banner' />
                     <Typography className={classes.bannerText}>{'Converse with anyone with any language'}</Typography>
                 </Grid>
             </Grid>

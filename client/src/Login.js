@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
-  Grid,
-  Button,
   FormControl,
   TextField,
 } from '@material-ui/core';
@@ -28,9 +26,9 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Login = ({ user, login }) => {
-  const history = useHistory();
+const Login = ({ login, user }) => {
   const classes = useStyles();
+  const history = useHistory();
 
   const handleLogin = async (event) => {
     event.preventDefault();
@@ -47,7 +45,7 @@ const Login = ({ user, login }) => {
   }, [user, history]);
 
   return (
-    <AuthWrapper>
+    <AuthWrapper title="Don't have an account?" buttonText='Create account' targetPath='register'>
       <Form handleSubmit={handleLogin} header={'Welcome back!'} buttonText={'Login'}>
         <FormControl className={classes.formStyle} margin="normal" required>
           <TextField
