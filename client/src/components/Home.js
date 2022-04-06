@@ -181,7 +181,10 @@ const Home = ({ user, logout }) => {
   useEffect(() => {
     const fetchConversations = async () => {
       try {
-        const { data } = await axios.get("/api/conversations");
+        let { data } = await axios.get("/api/conversations");
+        data.map(({messages}) => {
+          messages: messages.reverse()
+        });
         setConversations(data);
       } catch (error) {
         console.error(error);
@@ -200,6 +203,7 @@ const Home = ({ user, logout }) => {
 
   return (
     <>
+      <Button onClick={handleLogout}>Logout</Button>
       <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <SidebarContainer
@@ -208,7 +212,6 @@ const Home = ({ user, logout }) => {
           clearSearchedUsers={clearSearchedUsers}
           addSearchedUsers={addSearchedUsers}
           setActiveChat={setActiveChat}
-          handleLogout={handleLogout}
         />
         <ActiveChat
           activeConversation={activeConversation}
